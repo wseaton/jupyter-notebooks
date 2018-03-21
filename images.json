@@ -38,7 +38,7 @@
                 "source": {
                     "type": "Git",
                     "git": {
-                        "uri": "https://github.com/jupyter-on-openshift/jupyter-notebooks"
+                        "uri": "https://github.com/vpavlin/jupyter-notebooks"
                     },
                     "contextDir": "minimal-notebook"
                 },
@@ -46,16 +46,15 @@
                     "type": "Source",
                     "sourceStrategy": {
                         "from": {
-                            "kind": "ImageStreamTag",
-                            "name": "python:3.5",
-                            "namespace": "openshift"
+                            "kind": "DockerImage",
+                            "name": "centos/python-36-centos7:latest"
                         }
                     }
                 },
                 "output": {
                     "to": {
                         "kind": "ImageStreamTag",
-                        "name": "s2i-minimal-notebook:3.5"
+                        "name": "s2i-minimal-notebook:3.6"
                     }
                 },
                 "resources": {
@@ -101,7 +100,7 @@
                 "source": {
                     "type": "Git",
                     "git": {
-                        "uri": "https://github.com/jupyter-on-openshift/jupyter-notebooks"
+                        "uri": "https://github.com/vpavlin/jupyter-notebooks"
                     },
                     "contextDir": "scipy-notebook"
                 },
@@ -110,14 +109,14 @@
                     "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "s2i-minimal-notebook:3.5"
+                            "name": "s2i-minimal-notebook:3.6"
                         }
                     }
                 },
                 "output": {
                     "to": {
                         "kind": "ImageStreamTag",
-                        "name": "s2i-scipy-notebook:3.5"
+                        "name": "s2i-scipy-notebook:3.6"
                     }
                 },
                 "resources": {
@@ -163,7 +162,7 @@
                 "source": {
                     "type": "Git",
                     "git": {
-                        "uri": "https://github.com/jupyter-on-openshift/jupyter-notebooks"
+                        "uri": "https://github.com/vpavlin/jupyter-notebooks"
                     },
                     "contextDir": "tensorflow-notebook"
                 },
@@ -172,14 +171,14 @@
                     "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "s2i-minimal-notebook:3.5"
+                            "name": "s2i-minimal-notebook:3.6"
                         }
                     }
                 },
                 "output": {
                     "to": {
                         "kind": "ImageStreamTag",
-                        "name": "s2i-tensorflow-notebook:3.5"
+                        "name": "s2i-tensorflow-notebook:3.6"
                     }
                 },
                 "resources": {
