@@ -38,16 +38,7 @@
                 "source": {
                     "type": "Git",
                     "git": {
-<<<<<<< HEAD
-<<<<<<< HEAD
-                        "uri": "https://github.com/jupyter-on-openshift/jupyter-notebooks",
-                        "ref": "1.0.2"
-=======
                         "uri": "https://github.com/vpavlin/jupyter-notebooks"
->>>>>>> Use python 3.6 image as a base
-=======
-                        "uri": "https://github.com/vpavlin/jupyter-notebooks"
->>>>>>> Use python 3.6 image as a base
                     },
                     "contextDir": "minimal-notebook"
                 },
@@ -55,17 +46,8 @@
                     "type": "Source",
                     "sourceStrategy": {
                         "from": {
-<<<<<<< HEAD
-                            "kind": "ImageStreamTag",
-                            "name": "python:3.5",
-                            "namespace": "openshift"
-=======
                             "kind": "DockerImage",
                             "name": "centos/python-36-centos7:latest"
-<<<<<<< HEAD
->>>>>>> Use python 3.6 image as a base
-=======
->>>>>>> Use python 3.6 image as a base
                         }
                     }
                 },
