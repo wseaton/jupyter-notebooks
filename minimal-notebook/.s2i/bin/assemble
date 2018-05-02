@@ -27,6 +27,7 @@ if [[ ! -z "${JUPYTER_INSTALL_LAB}" ]]; then
     rm -rf $HOME/.node-gyp
 fi
 
+
 # Copy into place default config files for Jupyter and Apache webdav.
 
 cp /tmp/src/jupyter_notebook_config.py /opt/app-root/etc/
@@ -136,6 +137,11 @@ autostart=%(ENV_JUPYTER_ENABLE_WEBDAV)s
 [include]
 files = /opt/app-root/src/.supervisord/*.conf
 EOF
+
+pip install jupyter_nbextensions_configurator jupyter_contrib_nbextensions
+jupyter nbextensions_configurator enable --user
+
+
 
 ########################################################################
 # WARNING: Don't do anything beyond this point that relies on Python.
