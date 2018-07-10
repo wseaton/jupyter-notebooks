@@ -40,6 +40,8 @@ if [ -n "${JUPYTER_PRELOAD_REPOS}" ]; then
     done
 fi
 
+set -eo pipefail
+
 if [[ "$NOTEBOOK_ARGS $@" != *"--ip="* ]]; then
   NOTEBOOK_ARGS="--ip=0.0.0.0 $NOTEBOOK_ARGS"
 fi
