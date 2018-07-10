@@ -1,8 +1,5 @@
 #!/bin/bash
 
-set -eo pipefail
-
-
 if [ -n "${JUPYTER_PRELOAD_REPOS}" ]; then
     for repo in `echo ${JUPYTER_PRELOAD_REPOS} | tr ',' ' '`; do
         echo "Checking if repository $repo exists locally"
@@ -16,6 +13,8 @@ if [ -n "${JUPYTER_PRELOAD_REPOS}" ]; then
         fi
     done
 fi
+
+set -eo pipefail
 
 if [[ "$NOTEBOOK_ARGS $@" != *"--ip="* ]]; then
   NOTEBOOK_ARGS="--ip=0.0.0.0 $NOTEBOOK_ARGS"
