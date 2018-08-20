@@ -17,6 +17,7 @@ pip install 'mod_wsgi==4.6.2'
 # Install base packages needed for running Jupyter Notebooks. 
 
 pip install -r /tmp/src/requirements.txt
+pip uninstall -y uuid
 
 # Activate JupyterHub extension for JupyterLab.
 
