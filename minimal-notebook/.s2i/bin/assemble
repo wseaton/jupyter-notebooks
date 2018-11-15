@@ -140,7 +140,9 @@ autostart=%(ENV_JUPYTER_ENABLE_WEBDAV)s
 files = /opt/app-root/src/.supervisord/*.conf
 EOF
 
-jupyter nbextension install --sys-prefix https://raw.githubusercontent.com/vpavlin/jupyter-publish-extension/01c210833f81ccd757e2eb9718cd165f9e454ee7/publish.js
+[ -z "${PUBLISH_EXTENSION_VERSION}" ] && PUBLISH_EXTENSION_VERSION=7999db92d2d88034e41367653dbf3aab52b54b11
+
+jupyter nbextension install --sys-prefix https://raw.githubusercontent.com/vpavlin/jupyter-publish-extension/${PUBLISH_EXTENSION_VERSION}/publish.js
 jupyter nbextension enable --sys-prefix publish
 
 ########################################################################

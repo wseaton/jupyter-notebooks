@@ -25,6 +25,7 @@ fi
 
 if [[ "$JUPYTER_PROGRAM_ARGS $@" != *"--ip="* ]]; then
     JUPYTER_PROGRAM_ARGS="--ip=0.0.0.0 $JUPYTER_PROGRAM_ARGS"
+fi
 
 if [ -n "${JUPYTER_PRELOAD_REPOS}" ]; then
     for repo in `echo ${JUPYTER_PRELOAD_REPOS} | tr ',' ' '`; do
