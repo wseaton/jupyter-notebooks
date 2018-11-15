@@ -3,8 +3,6 @@
 
 set -x
 
-set -eo pipefail
-
 JUPYTER_PROGRAM_ARGS="$JUPYTER_PROGRAM_ARGS $NOTEBOOK_ARGS"
 
 if [ x"$JUPYTER_MASTER_FILES" != x"" ]; then
