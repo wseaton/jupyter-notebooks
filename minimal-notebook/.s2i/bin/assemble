@@ -143,6 +143,7 @@ EOF
 [ -z "${PUBLISH_EXTENSION_VERSION}" ] && PUBLISH_EXTENSION_VERSION=7999db92d2d88034e41367653dbf3aab52b54b11
 
 jupyter nbextension install --sys-prefix https://raw.githubusercontent.com/vpavlin/jupyter-publish-extension/${PUBLISH_EXTENSION_VERSION}/publish.js
+
 jupyter nbextension enable --sys-prefix publish
 
 ########################################################################
