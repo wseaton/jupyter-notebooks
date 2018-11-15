@@ -12,6 +12,16 @@ if [ -f $DEST/.delete-volume ]; then
 fi
 
 if [ -d $DEST ]; then
+    if [ -f $DEST/.sync-volume ]; then
+        if ! [[ "$JUPYTER_SYNC_VOLUME" =~ ^(false|no|n|0)$ ]]; then
+            JUPYTER_SYNC_VOLUME=yes
+        fi
+    fi
+
+    if [[ "$JUPYTER_SYNC_VOLUME" =~ ^(true|yes|y|1)$ ]]; then
+        rsync -ar --ignore-existing $SRC/. $DEST
+    fi
+
     exit
 fi
 
