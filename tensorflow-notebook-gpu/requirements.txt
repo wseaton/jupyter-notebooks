@@ -1,0 +1,5 @@
+
+### Add tf-gpu
+
+tensorflow-gpu==1.13.*
+

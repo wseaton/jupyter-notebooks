@@ -188,3 +188,41 @@ The templates are:
 * ``notebook-workspace`` - Template for deploying a Jupyter Notebook image which also attaches a persistent volume, and copies any installed Python packages and notebooks into the persistent volume. Any work done on the notebooks or to install additional Python packages will survive a restart of the Jupyter Notebook environment. A webdav interface is also enabled to allow remote mounting of the persistent volume.
 
 The templates can be used from the command line or from the web console. To find the templates in the web console, click on the _Add to Project_ menu in the top navigation bar and then click _Select from Project_. Filter on _jupyter_ if necessary.
+
+Building Tensorflow GPU images
+------------------------------
+
+As we cannot redistribute CUDA based images, you need to build the base image for Tensorflow GPU image yourself. Subin Modeel (@sub-mod) maintains templates and Dockerfiles in https://github.com/thoth-station/tensorflow-build-s2i/tree/master/cuda.
+
+To upload the template to your cluster, use the following command:
+
+```
+oc apply -f https://raw.githubusercontent.com/thoth-station/tensorflow-build-s2i/master/cuda/cuda-build-chain.json
+```
+
+To build `ubi7` based CUDA enabled image (which is needed for Tensorflow GPU notebook images), use the following command:
+
+```
+CUDA_VERSION=10.0
+OS_VERSION=ubi7
+S2I_PYTHON_VERSION=3.6
+
+
+oc new-app --template=cuda-build-chain  \
+--param=S2I_IMAGE=registry.access.redhat.com/ubi7/s2i-base:latest  \
+--param=SOURCE_REPOSITORY_CONTEXT_DIR=${CUDA_VERSION} \
+--param=S2I_PYTHON_VERSION=${S2I_PYTHON_VERSION} \
+--param=APPLICATION_NAME=${CUDA_VERSION}-cuda-chain-${OS_VERSION}  \
+--param=APPLICATION_NAME_1=${CUDA_VERSION}-base-${OS_VERSION}  \
+--param=APPLICATION_NAME_2=${CUDA_VERSION}-runtime-${OS_VERSION}   \
+--param=APPLICATION_NAME_3=${CUDA_VERSION}-cudnn7-runtime-${OS_VERSION}   \
+--param=APPLICATION_NAME_4=${CUDA_VERSION}-devel-${OS_VERSION}  \
+--param=APPLICATION_NAME_5=${CUDA_VERSION}-cudnn7-devel-${OS_VERSION} \
+--param=APPLICATION_NAME_6=python-36-${OS_VERSION}
+```
+
+To build the Tensorflow GPU notebook image, use the following command:
+
+```
+oc apply -f images-gpu.json
+```
