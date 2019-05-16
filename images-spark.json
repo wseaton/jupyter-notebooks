@@ -47,7 +47,7 @@
                   "sourceStrategy": {
                       "from": {
                           "kind": "DockerImage",
-                          "name": "quay.io/vpavlin/python36-spark-centos7:latest"
+                          "name": "quay.io/vpavlin/python36-spark-ubi7:latest"
                       }
                   }
               },
