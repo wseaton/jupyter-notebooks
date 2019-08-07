@@ -6,9 +6,9 @@
           "kind": "ImageStream",
           "apiVersion": "v1",
           "metadata": {
-              "name": "s2i-spark-minimal-notebook",
+              "name": "s2i-spark24-minimal-notebook",
               "labels": {
-                  "build": "s2i-spark-minimal-notebook"
+                  "build": "s2i-spark24-minimal-notebook"
               }
           },
           "spec": {
@@ -21,9 +21,9 @@
           "kind": "BuildConfig",
           "apiVersion": "v1",
           "metadata": {
-              "name": "s2i-spark-minimal-notebook",
+              "name": "s2i-spark24-minimal-notebook",
               "labels": {
-                  "build": "s2i-spark-minimal-notebook"
+                  "build": "s2i-spark24-minimal-notebook"
               }
           },
           "spec": {
@@ -47,14 +47,14 @@
                   "sourceStrategy": {
                       "from": {
                           "kind": "DockerImage",
-                          "name": "quay.io/vpavlin/python36-spark-ubi7:latest"
+                          "name": "quay.io/vpavlin/python36-spark-ubi7:feature_spark-2.4"
                       }
                   }
               },
               "output": {
                   "to": {
                       "kind": "ImageStreamTag",
-                      "name": "s2i-spark-minimal-notebook:3.6"
+                      "name": "s2i-spark24-minimal-notebook:3.6"
                   }
               },
               "resources": {
@@ -68,9 +68,9 @@
         "kind": "ImageStream",
         "apiVersion": "v1",
         "metadata": {
-            "name": "s2i-spark-scipy-notebook",
+            "name": "s2i-spark24-scipy-notebook",
             "labels": {
-                "build": "s2i-spark-scipy-notebook"
+                "build": "s2i-spark24-scipy-notebook"
             }
         },
         "spec": {
@@ -83,9 +83,9 @@
         "kind": "BuildConfig",
         "apiVersion": "v1",
         "metadata": {
-            "name": "s2i-spark-scipy-notebook",
+            "name": "s2i-spark24-scipy-notebook",
             "labels": {
-                "build": "s2i-spark-scipy-notebook"
+                "build": "s2i-spark24-scipy-notebook"
             }
         },
         "spec": {
@@ -109,14 +109,14 @@
                 "sourceStrategy": {
                     "from": {
                         "kind": "ImageStreamTag",
-                        "name": "s2i-spark-minimal-notebook:3.6"
+                        "name": "s2i-spark24-minimal-notebook:3.6"
                     }
                 }
             },
             "output": {
                 "to": {
                     "kind": "ImageStreamTag",
-                    "name": "s2i-spark-scipy-notebook:3.6"
+                    "name": "s2i-spark24-scipy-notebook:3.6"
                 }
             },
             "resources": {
