@@ -146,6 +146,9 @@ jupyter nbextension install --sys-prefix https://raw.githubusercontent.com/vpavl
 
 jupyter nbextension enable --sys-prefix publish
 
+# Enable Jupyter NBRequirements extension
+jupyter nbextension install --user --py jupyter_nbrequirements
+
 ########################################################################
 # WARNING: Don't do anything beyond this point that relies on Python.
 ########################################################################

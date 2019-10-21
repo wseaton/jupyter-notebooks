@@ -10,3 +10,5 @@ pandas-profiling==2.1.0
 mlflow==0.5.0
 tornado<6.0.0
 rise==5.5.1
+
+jupyter-nbrequirements==0.1.0
