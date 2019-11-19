@@ -1,0 +1,194 @@
+{
+    "kind": "List",
+    "apiVersion": "v1",
+    "items": [
+        {
+            "kind": "ImageStream",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "s2i-minimal-notebook-gpu",
+                "labels": {
+                    "build": "s2i-minimal-notebook-gpu"
+                }
+            },
+            "spec": {
+                "lookupPolicy": {
+                    "local": true
+                }
+            }
+        },
+        {
+            "kind": "BuildConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "s2i-minimal-notebook-gpu",
+                "labels": {
+                    "build": "s2i-minimal-notebook-gpu"
+                }
+            },
+            "spec": {
+                "triggers": [
+                    {
+                        "type": "ConfigChange"
+                    },
+                    {
+                        "type": "ImageChange"
+                    }
+                ],
+                "source": {
+                    "type": "Git",
+                    "git": {
+                        "uri": "https://github.com/vpavlin/jupyter-notebooks"
+                    },
+                    "contextDir": "minimal-notebook"
+                },
+                "strategy": {
+                    "type": "Source",
+                    "sourceStrategy": {
+                        "from": {
+                            "kind": "ImageStreamTag",
+                            "name": "python-36-ubi7:10.1-cudnn7-devel-ubi7"
+                        }
+                    }
+                },
+                "output": {
+                    "to": {
+                        "kind": "ImageStreamTag",
+                        "name": "s2i-minimal-notebook-gpu:3.6-cuda10.1"
+                    }
+                },
+                "resources": {
+                    "limits": {
+                        "memory": "2Gi"
+                    }
+                }
+            }
+        },
+        {
+            "kind": "ImageStream",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "s2i-tensorflow-gpu-base",
+                "labels": {
+                    "build": "s2i-tensorflow-gpu-base"
+                }
+            },
+            "spec": {
+                "lookupPolicy": {
+                    "local": true
+                }
+            }
+        },
+        {
+            "kind": "BuildConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "s2i-tensorflow-gpu-base",
+                "labels": {
+                    "build": "s2i-tensorflow-gpu-base"
+                }
+            },
+            "spec": {
+                "triggers": [
+                    {
+                        "type": "ConfigChange"
+                    },
+                    {
+                        "type": "ImageChange"
+                    }
+                ],
+                "source": {
+                    "type": "Git",
+                    "git": {
+                        "uri": "https://github.com/vpavlin/jupyter-notebooks",
+                        "ref": "feature/add-tf-gpu"
+                    },
+                    "contextDir": "tensorflow-notebook"
+                },
+                "strategy": {
+                    "type": "Source",
+                    "sourceStrategy": {
+                        "from": {
+                            "kind": "ImageStreamTag",
+                            "name": "s2i-minimal-notebook-gpu:3.6-cuda10.1"
+                        }
+                    }
+                },
+                "output": {
+                    "to": {
+                        "kind": "ImageStreamTag",
+                        "name": "s2i-tensorflow-gpu-base:3.6-cuda10.1"
+                    }
+                },
+                "resources": {
+                    "limits": {
+                        "memory": "2Gi"
+                    }
+                }
+            }
+        },
+        {
+            "kind": "ImageStream",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "s2i-tensorflow-notebook-gpu",
+                "labels": {
+                    "build": "s2i-tensorflow-notebook-gpu"
+                }
+            },
+            "spec": {
+                "lookupPolicy": {
+                    "local": true
+                }
+            }
+        },
+        {
+            "kind": "BuildConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "s2i-tensorflow-notebook-gpu",
+                "labels": {
+                    "build": "s2i-tensorflow-notebook-gpu"
+                }
+            },
+            "spec": {
+                "triggers": [
+                    {
+                        "type": "ConfigChange"
+                    },
+                    {
+                        "type": "ImageChange"
+                    }
+                ],
+                "source": {
+                    "type": "Git",
+                    "git": {
+                        "uri": "https://github.com/vpavlin/jupyter-notebooks",
+                        "ref": "feature/add-tf-gpu"
+                    },
+                    "contextDir": "tensorflow-notebook-gpu"
+                },
+                "strategy": {
+                    "type": "Source",
+                    "sourceStrategy": {
+                        "from": {
+                            "kind": "ImageStreamTag",
+                            "name": "s2i-tensorflow-gpu-base:3.6-cuda10.1"
+                        }
+                    }
+                },
+                "output": {
+                    "to": {
+                        "kind": "ImageStreamTag",
+                        "name": "s2i-tensorflow-notebook-gpu:3.6-cuda10.1"
+                    }
+                },
+                "resources": {
+                    "limits": {
+                        "memory": "512Mi"
+                    }
+                }
+            }
+        }
+    ]
+}
