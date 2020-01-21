@@ -51,7 +51,7 @@ if (aws_access_key_id and aws_access_key_id!=None): # Make sure we have usable S
                         endpoint_url=endpoint_url,
                         aws_access_key_id = aws_access_key_id,
                         aws_secret_access_key = aws_secret_access_key,
-                        use_ssl = True if 'https' in endpoint_url else False ) # Provides for test environment with no https
+                        use_ssl = True if 'https' in endpoint_url else False, verify=False ) # Provides for test environment with no https
     # Enumerate all accessible buckets and create a folder entry in HybridContentsManager
     for bucket in s3.buckets.all():
         c.HybridContentsManager.manager_classes.update({'datalake_'+bucket.name: S3ContentsManager})
