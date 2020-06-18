@@ -1,5 +1,4 @@
-#FROM quay.io/odh-jupyterhub/s2i-scipy-notebook:3.6
-FROM centos/python-36-centos7
+FROM quay.io/guimou/s2i-minimal-centos-notebook:3.6
 
 USER root
 
