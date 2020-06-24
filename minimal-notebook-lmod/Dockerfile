@@ -1,7 +1,4 @@
-
 FROM centos/python-36-centos7:latest
-
-ENV LMOD_VER 8.3.17
 
 USER root
 
@@ -38,6 +35,8 @@ RUN yum -y install lua lua-devel lua-posix lua-filesystem tcl python-keyring && 
 RUN rpm -ivh https://kojipkgs.fedoraproject.org//packages/http-parser/2.7.1/3.el7/x86_64/http-parser-2.7.1-3.el7.x86_64.rpm
 
 # Build LMOD
+ENV LMOD_VER 8.3.17
+
 RUN mkdir -p /build
 WORKDIR /build
 
@@ -49,13 +48,12 @@ WORKDIR /build/Lmod-${LMOD_VER}
 
 RUN ./configure --prefix=/opt/apps --with-fastTCLInterp=no
 RUN make install
-RUN ln -s /opt/apps/lmod/lmod/init/profile /etc/profile.d/modules.sh
+# RUN ln -s /opt/apps/lmod/lmod/init/profile /etc/profile.d/modules.sh
 
 # Cleanup
 RUN rm -rf /build
 
 USER 1001
-RUN /etc/profile.d/modules.sh
 
 WORKDIR /opt/app-root/src
 

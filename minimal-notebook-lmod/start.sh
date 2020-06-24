@@ -2,6 +2,8 @@
 
 set -x
 
+source /opt/apps/lmod/lmod/init/profile
+
 if [ $# -eq 0 ]; then
     echo "Executing the command: bash"
     exec bash
