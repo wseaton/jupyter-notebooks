@@ -31,6 +31,8 @@ RUN ./configure --prefix=/opt/apps --with-fastTCLInterp=no && \
     ln -s /opt/apps/lmod/lmod/init/profile /etc/profile.d/z00_lmod.sh
 
 # Install EasyBuild
+RUN mkdir -p /opt/apps/easybuild
+RUN chown 1001 /opt/apps/easybuild
 USER 1001
 
 ENV EASYBUILD_PREFIX=/opt/apps/easybuild \
@@ -49,4 +51,4 @@ RUN ["/bin/bash", "-c", "source /opt/apps/lmod/lmod/init/profile && \
 
 WORKDIR /opt/app-root/src
 
-CMD [ "tail -f /dev/null" ]
+CMD /usr/bin/tail -f /dev/null
