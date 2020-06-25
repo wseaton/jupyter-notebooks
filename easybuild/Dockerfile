@@ -30,25 +30,6 @@ RUN ./configure --prefix=/opt/apps --with-fastTCLInterp=no && \
     rm -rf /build && \
     ln -s /opt/apps/lmod/lmod/init/profile /etc/profile.d/z00_lmod.sh
 
-# Install EasyBuild
-RUN mkdir -p /opt/apps/easybuild
-RUN chown 1001 /opt/apps/easybuild
 USER 1001
-
-ENV EASYBUILD_PREFIX=/opt/apps/easybuild \
-    PATH="$PATH:/opt/apps/lmod/lmod/libexec/" \
-    LMOD_CMD=/opt/apps/lmod/lmod/libexec/lmod \
-    MODULEPATH=/opt/apps/modulefiles/Linux:/opt/apps/modulefiles/Core:/opt/apps/easybuild/modules/all
-
-WORKDIR /tmp/eb
-
-RUN ["/bin/bash", "-c", "source /opt/apps/lmod/lmod/init/profile && \
-    curl -O https://raw.githubusercontent.com/easybuilders/easybuild-framework/develop/easybuild/scripts/bootstrap_eb.py && \
-    python bootstrap_eb.py $EASYBUILD_PREFIX && \
-    module use $EASYBUILD_PREFIX/modules/all && \
-    module load EasyBuild && \
-    rm -rf /tmp/eb"]
-
-WORKDIR /opt/app-root/src
 
 CMD /usr/bin/tail -f /dev/null
