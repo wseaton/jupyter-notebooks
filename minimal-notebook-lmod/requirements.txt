@@ -11,3 +11,4 @@ mlflow==0.5.0
 tornado<6.0.0
 rise==5.5.1
 jupyterlmod==1.8.1
+jupyter-server-proxy==1.5.0
