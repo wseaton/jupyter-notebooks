@@ -5,7 +5,8 @@ USER root
 
 RUN yum -y install git tar which bzip2 xz \
             epel-release make automake gcc gcc-c++ patch \
-            zlib-devel openssl-devel unzip iproute file && \
+            zlib-devel openssl-devel unzip iproute file \
+            pam-devel ant && \
     yum -y clean all
             
 RUN yum -y install lua lua-devel lua-posix lua-filesystem tcl python-keyring && \
@@ -31,5 +32,7 @@ RUN ./configure --prefix=/opt/apps --with-fastTCLInterp=no && \
     ln -s /opt/apps/lmod/lmod/init/profile /etc/profile.d/z00_lmod.sh
 
 USER 1001
+
+WORKDIR /opt/apps
 
 CMD /usr/bin/tail -f /dev/null
