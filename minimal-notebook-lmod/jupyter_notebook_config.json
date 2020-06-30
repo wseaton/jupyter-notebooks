@@ -1,12 +1,11 @@
 {
     "ServerProxy": {
         "servers": {
-            "code-server": {
+            "VSCode": {
                 "command": [
                     "code-server",
-                    "--no-auth",
+                    "--auth=none",
                     "--disable-telemetry",
-                    "--allow-http",
                     "--port={port}"
                 ],
                 "timeout": 20,
@@ -20,9 +19,13 @@
                     "rserver",
                     "--www-port={port}",
                     "--www-frame-origin=same",
-                    "--www-address=127.0.0.1"
+                    "--user={user}",
+                    "--auth-none=1",
+                    "--server-daemonize=0",
+                    "--server-working-dir=/opt/app-root/src"
                 ],
                 "timeout": 20,
+                "absolute_url": false,
                 "launcher_entry": {
                         "title": "RStudio",
                         "enabled" : false
