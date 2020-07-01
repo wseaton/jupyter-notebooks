@@ -37,7 +37,7 @@ c.ServerProxy.servers = {
             'rserver',
             '--www-port={port}',
             '--www-frame-origin=same',
-            '--user={user}',
+            '--user='+os.environ.get('JUPYTERHUB_USER'),
             '--auth-none=1',
             '--server-daemonize=0',
             '--server-working-dir=/opt/app-root/src'
