@@ -26,7 +26,7 @@ c.ServerProxy.servers = {
             '--disable-telemetry',
             '--port={port}'
         ],
-        'timeout': 20,
+        'timeout': 120,
         'launcher_entry': {
             'title': 'VS Code',
             'enabled': False
@@ -37,12 +37,11 @@ c.ServerProxy.servers = {
             'rserver',
             '--www-port={port}',
             '--www-frame-origin=same',
-            '--user='+os.environ.get('JUPYTERHUB_USER'),
             '--auth-none=1',
             '--server-daemonize=0',
             '--server-working-dir=/opt/app-root/src'
         ],
-        'timeout': 20,
+        'timeout': 120,
         'absolute_url': False,
         'launcher_entry': {
             'title': 'RStudio',
