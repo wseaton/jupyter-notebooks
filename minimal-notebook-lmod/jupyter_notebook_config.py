@@ -35,13 +35,14 @@ c.ServerProxy.servers = {
     'rstudio': {
         'command': [
             'rserver',
+            '--www-address={base_url}',
             '--www-port={port}',
             '--www-frame-origin=same',
             '--auth-none=1',
             '--server-daemonize=0',
             '--server-working-dir=/opt/app-root/src'
         ],
-        'timeout': 120,
+        'timeout': 300,
         'absolute_url': False,
         'launcher_entry': {
             'title': 'RStudio',

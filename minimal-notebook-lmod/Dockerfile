@@ -53,6 +53,8 @@ RUN make install
 # Cleanup
 RUN rm -rf /build
 
+# Required for rstudio to run without authentication
+ENV USER rstudio
 USER 1001
 
 WORKDIR /opt/app-root/src
