@@ -3,10 +3,12 @@ FROM centos/python-36-centos7:latest
 # Install Dependencies
 USER root
 
+RUN adduser easybuild && echo "easybuild:easybuild" | chpasswd && usermod -aG wheel easybuild
+
 RUN yum -y install git tar which bzip2 xz \
             epel-release make automake gcc gcc-c++ patch \
             zlib-devel openssl-devel unzip iproute file \
-            pam-devel ant && \
+            pam-devel ant sudo && \
     yum -y clean all
             
 RUN yum -y install lua lua-devel lua-posix lua-filesystem tcl python-keyring && \
