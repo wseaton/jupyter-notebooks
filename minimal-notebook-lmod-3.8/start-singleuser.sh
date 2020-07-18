@@ -48,8 +48,8 @@ fi
 
 JUPYTER_PROGRAM_ARGS="$JUPYTER_PROGRAM_ARGS --config=/opt/app-root/etc/jupyter_notebook_config.py"
 
-if [ ! -z "$JUPYTER_ENABLE_LAB" ]; then
-    JUPYTER_PROGRAM="jupyter labhub"
+if [[ "$JUPYTER_ENABLE_LAB" =~ ^(true|yes|y|1)$ ]]; then
+    JUPYTER_PROGRAM="jupyterhub-singleuser"
 else
     JUPYTER_PROGRAM="jupyterhub-singleuser"
 fi

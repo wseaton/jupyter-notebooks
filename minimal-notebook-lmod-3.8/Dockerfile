@@ -43,6 +43,8 @@ RUN rm -rf /tmp/src/.git* && \
 
 USER 1001
 
+ENV JUPYTER_INSTALL_LAB true
+
 RUN /tmp/scripts/assemble
 
 LABEL io.k8s.description="S2I builder for custom Jupyter notebooks." \
