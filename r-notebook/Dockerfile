@@ -29,6 +29,9 @@ RUN mkdir -p /usr/share/doc/R-3.6.0/html
 RUN cp /usr/lib64/R/library/stats/html/R.css /usr/share/doc/R-3.6.0/html/
 RUN R -e "install.packages(c('littler','stringr'))"
 
+# install the R kernel
+RUN R --no-save -e 'install.packages("IRkernel"); IRkernel::installspec(prefix = "/opt/app-root/")'
+
 # chmod for litter execution
 RUN chmod 755 /usr/lib64/R/library/littler/examples/install.r 
 RUN chmod 755 /usr/lib64/R/library/littler/examples/install2.r 
