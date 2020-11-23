@@ -8,13 +8,18 @@ set -eo pipefail
 
 /opt/app-root/builder/assemble
 
+mkdir -p /opt/app-root/share/R/libs
+echo -e 'R_LIBS_USER=/opt/app-root/share/R/libs' > /opt/app-root/src/.Renviron
+
+# Install the Kernel
+R --no-save -e 'install.packages("IRkernel"); IRkernel::installspec(prefix = "/opt/app-root/")'
+
 # Activate ipywidgets extension.
 
 jupyter nbextension enable --py widgetsnbextension --sys-prefix
 
 # Also activate ipywidgets extension for JupyterLab.
-
-#jupyter labextension install @jupyter-widgets/jupyterlab-manager
+# jupyter labextension install @jupyter-widgets/jupyterlab-manager@1
 
 # Install facets which does not have a pip package.
 
